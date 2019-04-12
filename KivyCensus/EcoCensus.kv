@@ -1,0 +1,45 @@
+<Button>:
+    font_size: 18
+
+<Label>:
+    font_size:18
+    size_hint: 0.2, 0.07
+<TextInput>:
+    font_size:18
+    size_hint: 0.2, 0.07
+
+<FloatLayout>
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        Rectangle:
+            source: 'data/images/background.jpg'
+            size: self.size
+
+    BoxLayout:
+        padding: 10
+        spacing: 10
+        size_hint: 1, None
+        pos_hint: {'top':0.93}
+        height: 44
+        Image:
+            size_hint: None, None
+            size: 100, 101
+            source: 'uhseal.png'
+
+
+    Button:
+        text: "Select Directory"
+        pos_hint: {"x": 0.5, 'y': 0}
+
+    Button:
+        text: "Predict"
+        pos_hint: {"right": 0.5, 'bottom': 1}
+
+    Label:
+        text: "Choose a folder"
+        pos_hint: {"right": 0.6, "top":1}
+
+    TextInput:
+        text: "Folder Path"
+        pos_hint: {"right": 0.8, "top":1}
