@@ -9,6 +9,9 @@
     size_hint: 0.2, 0.05
 
 <FloatLayout>
+    altitude: altitude
+    folder: folder
+    threshold: threshold
     canvas:
         Rectangle:
             pos: (root.x/2+200, root.y / 2+100)
@@ -19,22 +22,22 @@
         padding: 10
         spacing: 10
         size_hint: 1, None
-        pos_hint: {'top':0.90}
+        pos_hint: {'top':0.89}
         height: 44
         Image:
             size_hint: None, None
             size: 100, 101
             source: 'uhseal.png'
 
-
     Button:
         text: "Select Directory"
         pos_hint: {"x": 0.5, 'y': 0}
+        on_press: root.selectDirectory()
 
     Button:
         text: "Predict"
         pos_hint: {"right": 0.5, 'bottom': 1}
-
+        on_press: root.Predict()
     Label:
         text: "Choose a folder"
         pos_hint: {"right": 0.6, "top":1}
@@ -42,3 +45,21 @@
     TextInput:
         text: "Folder Path"
         pos_hint: {"right": 0.8, "top":1}
+        id: folder
+
+    Label:
+        text: "Altitude"
+        pos_hint: {"right": 0.6, "top": 0.95}
+
+    TextInput:
+        text: "Feet"
+        pos_hint: {"right": 0.8, "top":0.95}
+        id: altitude
+    Label:
+        text: "Prediction Threshold"
+        pos_hint: {"right": 0.57, "top": 0.9}
+
+    TextInput:
+        text: "(0.0-1.0)"
+        pos_hint: {"right": 0.8, "top":0.9}
+        id: threshold
