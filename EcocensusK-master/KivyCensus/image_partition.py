@@ -1,5 +1,4 @@
 from PIL import Image
-import get_lat_lon_exif_pil as gll
 import Get_lat_lon_exif_xmp as Gll
 import utm
 import os, sys
