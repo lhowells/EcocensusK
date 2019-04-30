@@ -32,12 +32,12 @@
     Button:
         text: "Select Directory"
         pos_hint: {"x": 0.5, 'y': 0}
-        on_press: root.selectDirectory()
+        on_release: root.selectDirectory()
 
     Button:
         text: "Predict"
         pos_hint: {"right": 0.5, 'bottom': 1}
-        on_press: root.Predict()
+        on_release: root.Predict()
     Label:
         text: "Choose a folder"
         pos_hint: {"right": 0.6, "top":1}
@@ -63,3 +63,14 @@
         text: "(0.0-1.0)"
         pos_hint: {"right": 0.8, "top":0.9}
         id: threshold
+
+    Button:
+        text: "Next"
+        pos_hint: {"right":1, "bottom":1}
+        on_release: root.next()
+    
+    Button:
+        text: "Previous"
+        pos_hint: {"right":0, "bottom":1}
+        on_release: root.prev()
+
