@@ -54,6 +54,7 @@ class Layout(FloatLayout):
         imread.main(Folder, altitude)
         partdirectory = os.path.dirname(Folder + '/Partitions/')
         os.rmdir(partdirectory)
+        self.Imglist()
 
     def Imglist(self):
         directory = os.listdir(self.folder.text)
