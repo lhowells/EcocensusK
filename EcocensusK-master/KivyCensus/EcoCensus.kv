@@ -1,3 +1,10 @@
+<LineRectangle>:
+    canvas:
+        Color:
+            rgba: .1, .1, 1, .9
+        Line:
+            width: 2.
+            rectangle: (self.x, self.y, self.width, self.height)
 <Button>:
     font_size: 18
 
@@ -8,26 +15,29 @@
     font_size:18
     size_hint: 0.2, 0.05
 
+
 <FloatLayout>
     altitude: altitude
     folder: folder
     threshold: threshold
-    canvas:
-        Rectangle:
-            pos: (root.x/2+200, root.y / 2+100)
-            source: 'example.jpg'
-            size: 1100, 700
+    current: current
+    Widget:
+        pos_hint: {"center_y": 0.5, "center_x": 0.5}
+        size_hint: 0.7, 0.7
+        canvas:
+            Rectangle:
+                source: 'example.jpg'
+                size: self.size
+                pos: self.pos
 
-    BoxLayout:
-        padding: 10
-        spacing: 10
-        size_hint: 1, None
-        pos_hint: {'top':0.89}
-        height: 44
-        Image:
-            size_hint: None, None
-            size: 100, 101
-            source: 'uhseal.png'
+    Widget:
+        pos_hint: {"right": 0.15, "top":1}
+        size_hint: 0.15,0.15
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: 'uhseal.png'
 
     Button:
         text: "Select Directory"
@@ -52,7 +62,7 @@
         pos_hint: {"right": 0.6, "top": 0.95}
 
     TextInput:
-        text: "Feet"
+        text: "30"
         pos_hint: {"right": 0.8, "top":0.95}
         id: altitude
     Label:
@@ -60,17 +70,17 @@
         pos_hint: {"right": 0.57, "top": 0.9}
 
     TextInput:
-        text: "(0.0-1.0)"
+        text: "0.8"
         pos_hint: {"right": 0.8, "top":0.9}
         id: threshold
 
     Button:
         text: "Next"
-        pos_hint: {"right":1, "bottom":1}
+        pos_hint: {"right": 1, "bottom": 1}
         on_release: root.next()
-    
+        id:current
     Button:
         text: "Previous"
-        pos_hint: {"right":0, "bottom":1}
+        pos_hint: {"right": .2, "bottom": 1}
         on_release: root.prev()
-
+        id: current
