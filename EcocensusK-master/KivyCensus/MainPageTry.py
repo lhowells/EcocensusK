@@ -7,11 +7,10 @@ from kivy.app import App
 from kivy.uix.button import Label , Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
-
+from PIL import Image
 import image_partition as impa
 import predictions as predict
 import imageReader as imread
-
 
 class bidirectional_iterator(object):
     def __init__(self, collection):
@@ -35,16 +34,13 @@ class bidirectional_iterator(object):
     def __iter__(self):
         return self
 
-
 class Layout(FloatLayout):
-        
-        self.imglist
-    
+    imglist =[]
     def selectDirectory(self):
         Tk().withdraw()
         self.folder.text = filedialog.askdirectory()
+        print (self.folder.text)
         # need to figure out how kivys file thing works
-    
     def Predict(self):
         Folder = self.folder.text
         altitude = float(self.altitude.text)
@@ -61,18 +57,33 @@ class Layout(FloatLayout):
         imglist = []
         for file in directory:
             if ".JPG" in file or ".jpg" in file:
-                imglist.append(file)
+                imglist.append(Image.open( self.folder.text +"/"+ file))
         self.imglist = bidirectional_iterator(imglist)
-    
+
     def next(self):
-        return imglist.next()
-    
+        if self.imglist == []:
+            return
+        im = Image(source = self.imglist.next())
+        self.canvas.Rectangle.source = im
+        im.reload
+        return self.imglist.next()
+
     def prev(self):
-        return imglist.prev()
+        if self.imglist == []:
+            return
+        im = Image(source=self.imglist.prev())
+        self.canvas.Rectangle.source = im
+        im.reload
+        return self.imglist.prev()
+
+
+#class LineRectangle(Widget):
+    #pass
 
 class EcoCensus(App):
 
     def build(self):
+        #FloatLayout.add_widget(LineRectangle(self, Widget))
         return Layout()
 
 if __name__ == '__main__':
