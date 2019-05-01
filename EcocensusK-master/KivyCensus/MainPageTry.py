@@ -17,13 +17,17 @@ from kivy.properties import StringProperty
 from kivy.uix.widget import Widget
 from kivy.graphics import Rectangle, Color
 from kivy.base import EventLoop
-
+from kivy.tools.packaging.pyinstaller_hooks import get_deps_minimal, get_deps_all, hookspath, runtime_hooks
 
 
 class bidirectional_iterator(object):
     def __init__(self, collection):
         self.collection = collection
         self.index = 0
+
+    def start(self):
+        return self.collection[0]
+
     def next(self):
         self.index += 1
         if self.index == len(self.collection):
@@ -63,6 +67,11 @@ class Layout(FloatLayout):
        # with self.canvas:
         #    self.rect = Rectangle(source=im, pos =self.pos, size = self.size)
         self.Imglist()
+        im = self.folder.text + "/" + str(self.imglist.start())
+        EcoCensus.abcd = im
+        self.imprint.canvas.clear()
+        with self.imprint.canvas:
+            Rectangle(source=EcoCensus.abcd, size=self.imprint.size, pos=self.imprint.pos)
         # need to figure out how kivys file thing works
 
     def Predict(self):
@@ -82,13 +91,6 @@ class Layout(FloatLayout):
             if ".JPG" in file or ".jpg" in file:
                 imglist.append(file)
         self.imglist = bidirectional_iterator(imglist)
-
-    def Canvas(self,imagename):
-        files = os.listdir(self.folder.text + "/Positive")
-        for file in files:
-            Posname = file.split("_",3)
-            #if imagename == Posname[2]:
-                # print rectangle
 
     def next(self):
         if self.imglist == []:
@@ -118,6 +120,7 @@ class Layout(FloatLayout):
         self.imprint.canvas.clear()
         with self.imprint.canvas:
             Rectangle(source = EcoCensus.abcd, size = self.imprint.size, pos = self.imprint.pos)
+
         #super.ids.imprint.canvas[Rectangle].source = im
         #EventLoop.window.abcd = im
         #self.Rectangle.source = 'example.jpg'
@@ -128,7 +131,7 @@ class Layout(FloatLayout):
     #pass
 
 class EcoCensus(App):
-    abcd = StringProperty('example.jpg')
+    abcd = StringProperty('Background.png')
     def build(self):
         #FloatLayout.add_widget(LineRectangle(self, Widget))
 
