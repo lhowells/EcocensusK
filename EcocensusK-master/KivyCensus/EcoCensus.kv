@@ -37,7 +37,7 @@
 
     Widget:
         pos_hint: {"right": 0.15, "top":1}
-        size_hint: 0.15,0.15
+        size_hint: 0.15,0.2
         canvas:
             Rectangle:
                 size: self.size
@@ -55,7 +55,7 @@
         on_release: root.Predict()
     Label:
         text: "Choose a folder"
-        pos_hint: {"right": 0.6, "top":1}
+        pos_hint: {"right": 0.642, "top":1.01}
 
     TextInput:
         text: "Folder Path"
@@ -63,19 +63,19 @@
         id: folder
 
     Label:
-        text: "Altitude"
-        pos_hint: {"right": 0.6, "top": 0.95}
+        text: "Altitude(feet)"
+        pos_hint: {"right": 0.65, "top": 0.96}
 
     TextInput:
-        text: "Feet"
+        text: ""
         pos_hint: {"right": 0.8, "top":0.95}
         id: altitude
     Label:
-        text: "Prediction Threshold"
-        pos_hint: {"right": 0.57, "top": 0.9}
+        text: "Prediction Threshold (0.0-1.0)"
+        pos_hint: {"right": 0.592, "top": 0.91}
 
     TextInput:
-        text: "(0.0-1.0)"
+        text: ""
         pos_hint: {"right": 0.8, "top":0.9}
         id: threshold
 
